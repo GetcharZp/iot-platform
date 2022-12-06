@@ -6,7 +6,7 @@
 
 ## 技术栈
 
-+ 后端：go-zero
++ 后端：go-zero、gorm
 + 前端：vue
 + 硬件：arduino、esp8266
 
