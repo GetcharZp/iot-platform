@@ -19,6 +19,32 @@ go get -u github.com/zeromicro/go-zero/tools/goctl@latest
 ```
 3. 下载安装 [arduino](https://www.arduino.cc/en/donate/)
 
+## 命令
+
++ 创建API服务
+
+```shell
+goctl api new 服务名称
+# 1. 创建 user 服务
+goctl api new user
+```
+
++ 生成服务代码
+
+```shell
+goctl api go -api 服务名称.api -dir . -style go_zero
+# 1. 生成 user 服务代码
+goctl api go -api user.api -dir . -style go_zero
+```
+
++ 启动服务
+
+```shell
+go run 服务名称.go -f 配置文件地址
+# 1. 启动 user 服务
+go run user.go -f etc/user-api.yaml
+```
+
 ## 适用场景
 
 共享单车、共享充电宝、外卖柜
@@ -26,6 +52,7 @@ go get -u github.com/zeromicro/go-zero/tools/goctl@latest
 ## 功能模块
 
 + [ ] 用户模块
+  + [x] 登录
 + [ ] 后台管理模块
 + [ ] 开放平台模块
 + [ ] 设备服务模块

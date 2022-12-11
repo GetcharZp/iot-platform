@@ -1,0 +1,13 @@
+type UserLoginRequest {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type UserLoginReply {
+	Token string `json:"token"`
+}
+
+service user-api {
+	@handler UserLoginHandler
+	post /user/login(UserLoginRequest) returns (UserLoginReply)
+}
