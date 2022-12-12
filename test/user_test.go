@@ -8,7 +8,7 @@ import (
 	"testing"
 )
 
-var userServiceAddr = "http://127.0.0.1:8888"
+var userServiceAddr = "http://127.0.0.1:14000"
 
 func TestUserLogin(t *testing.T) {
 	m := define.M{
