@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"fmt"
 	"gitee/getcharzp/iot-platform/helper"
 	"gitee/getcharzp/iot-platform/models"
 
@@ -26,6 +27,7 @@ func NewDeviceListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Device
 }
 
 func (l *DeviceListLogic) DeviceList(req *types.DeviceListRequest) (resp *types.DeviceListReply, err error) {
+	fmt.Println(l.svcCtx.AuthUser.Identity)
 	req.Size = helper.If(req.Size == 0, 20, req.Size).(int)
 	req.Page = helper.If(req.Page == 0, 0, (req.Page-1)*req.Size).(int)
 	var count int64

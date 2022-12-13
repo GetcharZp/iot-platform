@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package template;
+option go_package="./user";
+
+service User {
+  rpc Auth(UserAuthRequest) returns (UserAuthReply);
+}
+
+message UserAuthRequest {
+  string token = 1;
+}
+
+message UserAuthReply {
+  string identity = 1;
+  uint64 id = 2;
+  map<string, string> extend = 3;
+}

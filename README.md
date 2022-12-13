@@ -18,6 +18,17 @@
 go get -u github.com/zeromicro/go-zero/tools/goctl@latest 
 ```
 3. 下载安装 [arduino](https://www.arduino.cc/en/donate/)
+4. 搭建 ETCD 环境
+```shell
+# 参考如下，使用Docker安装ETCD
+docker run -d --name Etcd-server \
+    --network app-tier \
+    --publish 2379:2379 \
+    --publish 2380:2380 \
+    --env ALLOW_NONE_AUTHENTICATION=yes \
+    --env ETCD_ADVERTISE_CLIENT_URLS=http://etcd-server:2379 \
+    bitnami/etcd:latest
+```
 
 ## 命令
 
@@ -35,20 +46,24 @@ goctl api new admin
 
 ```shell
 goctl api go -api 服务名称.api -dir . -style go_zero
-# 1. 生成 user 服务代码
+# 1. 生成 user api 服务代码
 goctl api go -api user.api -dir . -style go_zero
-# 2. 生成 admin 服务代码
+# 2. 生成 admin api 服务代码
 goctl api go -api admin.api -dir . -style go_zero
+# 3. 生成 user rpc 服务代码
+goctl rpc protoc user.proto --go_out=./types --go-grpc_out=./types --zrpc_out=. --style go_zero
 ```
 
 + 启动服务
 
 ```shell
 go run 服务名称.go -f 配置文件地址
-# 1. 启动 user 服务
+# 1. 启动 user api 服务
 go run user.go -f etc/user-api.yaml
-# 2. 启动 admin 服务
+# 2. 启动 admin api 服务
 go run admin.go -f etc/admin-api.yaml
+# 3. 启动 user rpc 服务
+go run user.go -f etc/user.yaml
 ```
 
 ## 适用场景

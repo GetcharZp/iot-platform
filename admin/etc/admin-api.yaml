@@ -1,3 +1,7 @@
 Name: admin-api
 Host: 0.0.0.0
 Port: 14010
+Etcd:
+  Hosts:
+    - 192.168.1.8:2379
+  Key: user.rpc
