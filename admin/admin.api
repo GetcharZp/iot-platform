@@ -1,12 +1,39 @@
 service admin-api {
+	// 设备管理
+	// 设备列表
 	@handler DeviceListHandler
 	get /device/list(DeviceListRequest) returns (DeviceListReply)
+	
+	// 产品管理
+	// 产品列表
+	@handler ProductListHandler
+	get /product/list(ProductListRequst) returns (ProductListReply)
 }
 
-type DeviceListRequest {
+type ProductListRequst {
+	BaseRequest
+}
+
+type ProductListReply {
+	List  []*ProductListBaisc `json:"list"`
+	Count int64               `json:"count"`
+}
+
+type ProductListBaisc {
+	Identity  string `json:"identity"`
+	Key       string `json:"key"`
+	Name      string `json:"name"`
+	CreatedAt string `json:"created_at"`
+}
+
+type BaseRequest {
 	Page int    `json:"page,optional"`
 	Size int    `json:",optional"`
 	Name string `json:"name,optional"`
+}
+
+type DeviceListRequest {
+	BaseRequest
 }
 
 type DeviceListBaisc {
