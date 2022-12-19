@@ -31,5 +31,8 @@ func (l *ProductCreateLogic) ProductCreate(req *types.ProductCreateRequest) (res
 		Name:     req.Name,
 		Desc:     req.Desc,
 	}).Error
+	if err != nil {
+		logx.Error("[DB ERROR] : ", err)
+	}
 	return
 }

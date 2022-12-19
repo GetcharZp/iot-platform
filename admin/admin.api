@@ -14,7 +14,16 @@ service admin-api {
 	// 修改产品
 	@handler ProductModifyHandler
 	put /product/modify(ProductModifyRequest) returns (ProductModifyReply)
+	// 删除产品
+	@handler ProductDeleteHandler
+	delete /product/delete(ProductDeleteRequest) returns (ProductDeleteReply)
 }
+
+type ProductDeleteRequest {
+	Identity string `json:"identity"`
+}
+
+type ProductDeleteReply {}
 
 type ProductModifyRequest {
 	Identity string `json:"identity"`
@@ -43,6 +52,7 @@ type ProductListBaisc {
 	Identity  string `json:"identity"`
 	Key       string `json:"key"`
 	Name      string `json:"name"`
+	Desc      string `json:"desc"`
 	CreatedAt string `json:"created_at"`
 }
 

@@ -28,5 +28,8 @@ func (l *ProductModifyLogic) ProductModify(req *types.ProductModifyRequest) (res
 		Name: req.Name,
 		Desc: req.Desc,
 	}).Error
+	if err != nil {
+		logx.Error("[DB ERROR] : ", err)
+	}
 	return
 }

@@ -71,3 +71,21 @@ func TestProductModify(t *testing.T) {
 	}
 	fmt.Println(string(rep))
 }
+
+func TestProductDelete(t *testing.T) {
+	m1 := map[string]string{
+		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWRlbnRpdHkiOiIxIiwibmFtZSI6ImdldCIsImV4cCI6MTY3MzUzMTY1N30.XNyNdGwe8xYS7RvPM-LcZph_ade8EfEV2fMV7WPSmZc",
+	}
+	header, _ := json.Marshal(m1)
+
+	m2 := map[string]string{
+		"identity": "1",
+	}
+	data, _ := json.Marshal(m2)
+
+	rep, err := helper.HttpDelete(adminServiceAddr+"/product/delete", data, header...)
+	if err != nil {
+		t.Fatal(err)
+	}
+	fmt.Println(string(rep))
+}
