@@ -103,6 +103,10 @@ func httpRequest(url, method string, data, header []byte) ([]byte, error) {
 	return respBytes, nil
 }
 
+func HttpPut(url string, data []byte, header ...byte) ([]byte, error) {
+	return httpRequest(url, "PUT", data, header)
+}
+
 func HttpPost(url string, data []byte, header ...byte) ([]byte, error) {
 	return httpRequest(url, "POST", data, header)
 }

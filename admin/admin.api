@@ -11,7 +11,17 @@ service admin-api {
 	// 创建产品
 	@handler ProductCreateHandler
 	post /product/create(ProductCreateRequest) returns (ProductCreateReply)
+	// 修改产品
+	@handler ProductModifyHandler
+	put /product/modify(ProductModifyRequest) returns (ProductModifyReply)
 }
+
+type ProductModifyRequest {
+	Identity string `json:"identity"`
+	ProductCreateRequest
+}
+
+type ProductModifyReply {}
 
 type ProductCreateRequest {
 	Name string `json:"name"`
