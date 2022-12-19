@@ -8,7 +8,17 @@ service admin-api {
 	// 产品列表
 	@handler ProductListHandler
 	get /product/list(ProductListRequst) returns (ProductListReply)
+	// 创建产品
+	@handler ProductCreateHandler
+	post /product/create(ProductCreateRequest) returns (ProductCreateReply)
 }
+
+type ProductCreateRequest {
+	Name string `json:"name"`
+	Desc string `json:"desc"`
+}
+
+type ProductCreateReply{}
 
 type ProductListRequst {
 	BaseRequest
@@ -26,12 +36,6 @@ type ProductListBaisc {
 	CreatedAt string `json:"created_at"`
 }
 
-type BaseRequest {
-	Page int    `json:"page,optional"`
-	Size int    `json:",optional"`
-	Name string `json:"name,optional"`
-}
-
 type DeviceListRequest {
 	BaseRequest
 }
@@ -47,4 +51,11 @@ type DeviceListBaisc {
 type DeviceListReply {
 	List  []*DeviceListBaisc `json:"list"`
 	Count int64              `json:"count"`
+}
+
+// 公共 type
+type BaseRequest {
+	Page int    `json:"page,optional"`
+	Size int    `json:",optional"`
+	Name string `json:"name,optional"`
 }
