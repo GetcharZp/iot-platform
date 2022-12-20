@@ -28,6 +28,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: DeviceModifyHandler(serverCtx),
 			},
 			{
+				Method:  http.MethodDelete,
+				Path:    "/device/delete",
+				Handler: DeviceDeleteHandler(serverCtx),
+			},
+			{
 				Method:  http.MethodGet,
 				Path:    "/product/list",
 				Handler: ProductListHandler(serverCtx),

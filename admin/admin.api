@@ -9,6 +9,9 @@ service admin-api {
 	// 修改设备
 	@handler DeviceModifyHandler
 	put /device/modify(DeviceModifyRequest) returns (DeviceModifyReply)
+	// 删除设备
+	@handler DeviceDeleteHandler
+	delete /device/delete(DeviceDeleteRequest) returns (DeviceDeleteReply)
 	
 	// 产品管理
 	// 产品列表
@@ -24,6 +27,12 @@ service admin-api {
 	@handler ProductDeleteHandler
 	delete /product/delete(ProductDeleteRequest) returns (ProductDeleteReply)
 }
+
+type DeviceDeleteRequest {
+	Identity string `json:"identity"`
+}
+
+type DeviceDeleteReply {}
 
 type DeviceModifyRequest {
 	Identity string `json:"identity"`
