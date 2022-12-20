@@ -6,6 +6,9 @@ service admin-api {
 	// 创建设备
 	@handler DeviceCreateHandler
 	post /device/create(DeviceCreateRequest) returns (DeviceCreateReply)
+	// 修改设备
+	@handler DeviceModifyHandler
+	put /device/modify(DeviceModifyRequest) returns (DeviceModifyReply)
 	
 	// 产品管理
 	// 产品列表
@@ -21,6 +24,13 @@ service admin-api {
 	@handler ProductDeleteHandler
 	delete /product/delete(ProductDeleteRequest) returns (ProductDeleteReply)
 }
+
+type DeviceModifyRequest {
+	Identity string `json:"identity"`
+	DeviceCreateRequest
+}
+
+type DeviceModifyReply {}
 
 type DeviceCreateRequest {
 	Name            string `json:"name"`
