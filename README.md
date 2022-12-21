@@ -29,6 +29,10 @@ docker run -d --name Etcd-server \
     --env ETCD_ADVERTISE_CLIENT_URLS=http://etcd-server:2379 \
     bitnami/etcd:latest
 ```
+5. 搭建 EMQX 环境，参考地址：https://www.emqx.io/downloads
+```shell
+docker run -d --name emqx -p 1883:1883 -p 8083:8083 -p 8084:8084 -p 8883:8883 -p 18083:18083 emqx/emqx:5.0.12 
+```
 
 ## 命令
 
@@ -75,7 +79,7 @@ go run user.go -f etc/user.yaml
 + [ ] 用户模块
   + [x] 登录
 + [ ] 后台管理模块
-  + [ ] 设备管理
+  + [x] 设备管理
     + [x] 设备列表
     + [x] 创建、修改、删除设备
   + [x] 产品管理
