@@ -56,6 +56,8 @@ goctl api go -api user.api -dir . -style go_zero
 goctl api go -api admin.api -dir . -style go_zero
 # 3. 生成 user rpc 服务代码
 goctl rpc protoc user.proto --go_out=./types --go-grpc_out=./types --zrpc_out=. --style go_zero
+# 4. 生成 device rpc 服务代码
+goctl rpc protoc device.proto --go_out=./types --go-grpc_out=./types --zrpc_out=. --style go_zero
 ```
 
 + 启动服务
@@ -68,6 +70,8 @@ go run user.go -f etc/user-api.yaml
 go run admin.go -f etc/admin-api.yaml
 # 3. 启动 user rpc 服务
 go run user.go -f etc/user.yaml
+# 4. 启动 device rpc 服务
+go run device.go -f etc/device.yaml
 ```
 
 ## 适用场景
@@ -87,3 +91,5 @@ go run user.go -f etc/user.yaml
     + [x] 创建、修改、删除产品
 + [ ] 开放平台模块
 + [ ] 设备服务模块
+  + [ ] 设备状态管理
+  + [ ] 发送消息

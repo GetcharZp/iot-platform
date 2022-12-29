@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package template;
+package user;
 option go_package="./user";
 
 service User {

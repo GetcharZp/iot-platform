@@ -35,7 +35,7 @@ func NewUserClient(cc grpc.ClientConnInterface) UserClient {
 
 func (c *userClient) Auth(ctx context.Context, in *UserAuthRequest, opts ...grpc.CallOption) (*UserAuthReply, error) {
 	out := new(UserAuthReply)
-	err := c.cc.Invoke(ctx, "/template.User/Auth", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/user.User/Auth", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +80,7 @@ func _User_Auth_Handler(srv interface{}, ctx context.Context, dec func(interface
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/template.User/Auth",
+		FullMethod: "/user.User/Auth",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServer).Auth(ctx, req.(*UserAuthRequest))
@@ -92,7 +92,7 @@ func _User_Auth_Handler(srv interface{}, ctx context.Context, dec func(interface
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var User_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "template.User",
+	ServiceName: "user.User",
 	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
