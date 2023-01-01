@@ -69,11 +69,12 @@ type DeviceListRequest struct {
 }
 
 type DeviceListBaisc struct {
-	Identity    string `json:"identity"`
-	Name        string `json:"name"`
-	Key         string `json:"key"`
-	Secret      string `json:"secret"`
-	ProductName string `json:"product_name"`
+	Identity       string `json:"identity"`
+	Name           string `json:"name"`
+	Key            string `json:"key"`
+	Secret         string `json:"secret"`
+	ProductName    string `json:"product_name"`
+	LastOnlineTime int64  `json:"last_online_time"`
 }
 
 type DeviceListReply struct {

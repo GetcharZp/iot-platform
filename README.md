@@ -78,6 +78,13 @@ go run device.go -f etc/device.yaml
 
 共享单车、共享充电宝、外卖柜
 
+## Topic
+
+1. 心跳
+```text
+/sys/产品key/设备key/ping
+```
+
 ## 功能模块
 
 + [ ] 用户模块
@@ -91,5 +98,5 @@ go run device.go -f etc/device.yaml
     + [x] 创建、修改、删除产品
 + [ ] 开放平台模块
 + [ ] 设备服务模块
-  + [ ] 设备状态管理
+  + [x] 设备状态管理
   + [ ] 发送消息
