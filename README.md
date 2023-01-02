@@ -33,6 +33,7 @@ docker run -d --name Etcd-server \
 ```shell
 docker run -d --name emqx -p 1883:1883 -p 8083:8083 -p 8084:8084 -p 8883:8883 -p 18083:18083 emqx/emqx:5.0.12 
 ```
+6. 开启 EMQX 认证，访问地址：http://192.168.1.8:18083/ ，默认的端口是 18083，根据自己的地址调整即可；默认用户名和密码为 admin/public
 
 ## 命令
 

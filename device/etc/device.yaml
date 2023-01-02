@@ -6,3 +6,5 @@ Etcd:
   Key: device.rpc
 Mqtt:
   Broker: tcp://192.168.1.8:1883
+  ClientID: go-mqtt-server-client-id
+  Password: '123456'

@@ -8,7 +8,8 @@ import (
 )
 
 func TestMqtt(t *testing.T) {
-	opt := mqtt.NewClientOptions().AddBroker("tcp://192.168.1.8:1883").SetClientID("go-test")
+	opt := mqtt.NewClientOptions().AddBroker("tcp://192.168.1.8:1883").SetClientID("go-test").
+		SetUsername("get").SetPassword("123456")
 
 	// 回调
 	opt.SetDefaultPublishHandler(func(client mqtt.Client, message mqtt.Message) {
@@ -24,9 +25,9 @@ func TestMqtt(t *testing.T) {
 	}
 
 	// 订阅主题
-	//if token := c.Subscribe("/topic/#", 0, nil); token.Wait() && token.Error() != nil {
-	//	t.Fatal(token.Error())
-	//}
+	if token := c.Subscribe("/sys/#", 0, nil); token.Wait() && token.Error() != nil {
+		t.Fatal(token.Error())
+	}
 
 	// 发布
 	if token := c.Publish("/sys/1/device_key/ping", 0, false, "Hello"); token.Wait() && token.Error() != nil {

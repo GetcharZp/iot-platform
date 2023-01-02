@@ -10,8 +10,9 @@ import (
 
 var topic = "/sys/#"
 
-func NewMqttServer(mqttBroker string) {
-	opt := mqtt.NewClientOptions().AddBroker(mqttBroker).SetClientID("go-mqtt-server-client-id")
+func NewMqttServer(mqttBroker, clientID, password string) {
+	opt := mqtt.NewClientOptions().AddBroker(mqttBroker).SetClientID(clientID).
+		SetUsername("get").SetPassword(password)
 
 	// 回调
 	opt.SetDefaultPublishHandler(publishHandler)
