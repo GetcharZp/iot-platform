@@ -87,6 +87,7 @@ func httpRequest(url, method string, data, header []byte) ([]byte, error) {
 			request.Header.Set(k, v.(string))
 		}
 	}
+	request.SetBasicAuth(define.EmqxKey, define.EmqxSecret)
 
 	client := http.Client{}
 	resp, err := client.Do(request)

@@ -56,7 +56,7 @@ func TestDeviceModify(t *testing.T) {
 
 func TestDeviceDelete(t *testing.T) {
 	m2 := map[string]string{
-		"identity": "1",
+		"identity": "1a6ecbfb-b3e6-4459-86cd-b43c61a22fa2",
 	}
 	data, _ := json.Marshal(m2)
 

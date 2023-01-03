@@ -2,7 +2,9 @@ package logic
 
 import (
 	"context"
+	"gitee/getcharzp/iot-platform/api"
 	"gitee/getcharzp/iot-platform/models"
+	"gorm.io/gorm"
 
 	"gitee/getcharzp/iot-platform/admin/internal/svc"
 	"gitee/getcharzp/iot-platform/admin/internal/types"
@@ -25,9 +27,30 @@ func NewDeviceDeleteLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Devi
 }
 
 func (l *DeviceDeleteLogic) DeviceDelete(req *types.DeviceDeleteRequest) (resp *types.DeviceDeleteReply, err error) {
-	err = l.svcCtx.DB.Where("identity = ?", req.Identity).Delete(new(models.DeviceBasic)).Error
+	deviceBasic := new(models.DeviceBasic)
+	err = l.svcCtx.DB.Model(new(models.DeviceBasic)).Select("key").Where("identity = ?", req.Identity).
+		Find(deviceBasic).Error
 	if err != nil {
 		logx.Error("[DB ERROR] : ", err)
+		return
 	}
+
+	err = l.svcCtx.DB.Transaction(func(tx *gorm.DB) error {
+		// 1. 数据库中删除设备
+		err = tx.Where("identity = ?", req.Identity).Delete(new(models.DeviceBasic)).Error
+		if err != nil {
+			logx.Error("[DB ERROR] : ", err)
+			return err
+		}
+
+		// 2. EMQX 中同步删除认证设备
+		err = api.DeleteAuthUser(deviceBasic.Key)
+		if err != nil {
+			logx.Error("[DeleteAuthUser ERROR] : ", err)
+			return err
+		}
+		return nil
+	})
+
 	return
 }

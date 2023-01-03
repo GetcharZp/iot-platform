@@ -34,6 +34,7 @@ docker run -d --name Etcd-server \
 docker run -d --name emqx -p 1883:1883 -p 8083:8083 -p 8084:8084 -p 8883:8883 -p 18083:18083 emqx/emqx:5.0.12 
 ```
 6. 开启 EMQX 认证，访问地址：http://192.168.1.8:18083/ ，默认的端口是 18083，根据自己的地址调整即可；默认用户名和密码为 admin/public
+7. 修改 `define.go` 中的EmqxAddr\EmqxKey\EmqxSecret为自己在EMQX后台生成的密钥对
 
 ## 命令
 
@@ -86,6 +87,10 @@ go run device.go -f etc/device.yaml
 /sys/产品key/设备key/ping
 ```
 
+## 设备连接说明
+
+1. 连接的客户端ID即为设备的Key，密码为md5(key+secret)
+
 ## 功能模块
 
 + [ ] 用户模块
@@ -101,3 +106,4 @@ go run device.go -f etc/device.yaml
 + [ ] 设备服务模块
   + [x] 设备状态管理
   + [ ] 发送消息
+  
