@@ -7,6 +7,10 @@ service Device {
   rpc SendMessage(SendMessageRequest) returns (SendMessageReply);
 }
 
-message SendMessageRequest {}
+message SendMessageRequest {
+  string product_key = 1;
+  string device_key = 2;
+  string data = 3;
+}
 
 message SendMessageReply {}

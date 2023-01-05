@@ -87,6 +87,12 @@ go run device.go -f etc/device.yaml
 /sys/产品key/设备key/ping
 ```
 
+2. 设备接受消息的订阅地址
+
+```text
+/sys/产品key/设备key/receive
+```
+
 ## 设备连接说明
 
 1. 连接的客户端ID即为设备的Key，密码为md5(key+secret)
@@ -103,7 +109,7 @@ go run device.go -f etc/device.yaml
     + [x] 产品列表
     + [x] 创建、修改、删除产品
 + [ ] 开放平台模块
-+ [ ] 设备服务模块
++ [x] 设备服务模块
   + [x] 设备状态管理
-  + [ ] 发送消息
+  + [x] 发送消息
   

@@ -25,7 +25,7 @@ func TestMqtt(t *testing.T) {
 	}
 
 	// 订阅主题
-	if token := c.Subscribe("/sys/#", 0, nil); token.Wait() && token.Error() != nil {
+	if token := c.Subscribe("/sys/1/device_key/receive", 0, nil); token.Wait() && token.Error() != nil {
 		t.Fatal(token.Error())
 	}
 
@@ -34,7 +34,7 @@ func TestMqtt(t *testing.T) {
 		t.Fatal(token.Error())
 	}
 
-	time.Sleep(time.Second * 2)
+	time.Sleep(time.Second * 3600 * 24)
 
 	// 取消订阅
 	if token := c.Unsubscribe("/topic/#"); token.Wait() && token.Error() != nil {
