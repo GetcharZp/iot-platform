@@ -46,6 +46,8 @@ goctl api new 服务名称
 goctl api new user
 # 2. 创建 admin 服务
 goctl api new admin
+# 3. 创建 open 服务
+goctl api new open
 ```
 
 + 生成服务代码
@@ -60,6 +62,8 @@ goctl api go -api admin.api -dir . -style go_zero
 goctl rpc protoc user.proto --go_out=./types --go-grpc_out=./types --zrpc_out=. --style go_zero
 # 4. 生成 device rpc 服务代码
 goctl rpc protoc device.proto --go_out=./types --go-grpc_out=./types --zrpc_out=. --style go_zero
+# 5. 生成 open api 服务代码
+goctl api go -api open.api -dir . -style go_zero
 ```
 
 + 启动服务
@@ -74,6 +78,8 @@ go run admin.go -f etc/admin-api.yaml
 go run user.go -f etc/user.yaml
 # 4. 启动 device rpc 服务
 go run device.go -f etc/device.yaml
+# 5. 启动 open api 服务
+go run open.go -f etc/open-api.yaml
 ```
 
 ## 适用场景
@@ -109,6 +115,8 @@ go run device.go -f etc/device.yaml
     + [x] 产品列表
     + [x] 创建、修改、删除产品
 + [ ] 开放平台模块
+  + [ ] 签名
+  + [x] 发送消息
 + [x] 设备服务模块
   + [x] 设备状态管理
   + [x] 发送消息
