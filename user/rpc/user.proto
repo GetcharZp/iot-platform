@@ -5,7 +5,14 @@ option go_package="./user";
 
 service User {
   rpc Auth(UserAuthRequest) returns (UserAuthReply);
+  rpc OpenAuth(OpenAuthRequest) returns (OpenAuthReply);
 }
+
+message OpenAuthRequest {
+  bytes body = 1;
+}
+
+message OpenAuthReply {}
 
 message UserAuthRequest {
   string token = 1;

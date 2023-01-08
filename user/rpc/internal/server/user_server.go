@@ -26,3 +26,8 @@ func (s *UserServer) Auth(ctx context.Context, in *user.UserAuthRequest) (*user.
 	l := logic.NewAuthLogic(ctx, s.svcCtx)
 	return l.Auth(in)
 }
+
+func (s *UserServer) OpenAuth(ctx context.Context, in *user.OpenAuthRequest) (*user.OpenAuthReply, error) {
+	l := logic.NewOpenAuthLogic(ctx, s.svcCtx)
+	return l.OpenAuth(in)
+}

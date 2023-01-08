@@ -30,5 +30,8 @@ func (l *SendMessageLogic) SendMessage(req *types.SendMessageRequest) (resp *typ
 		DeviceKey:  req.DeviceKey,
 		Data:       req.Data,
 	})
+	if err != nil {
+		logx.Error("[ERROR] : ", err.Error())
+	}
 	return
 }

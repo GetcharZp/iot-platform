@@ -99,9 +99,28 @@ go run open.go -f etc/open-api.yaml
 /sys/产品key/设备key/receive
 ```
 
-## 设备连接说明
+## 相关说明
+
+### 设备连接
 
 1. 连接的客户端ID即为设备的Key，密码为md5(key+secret)
+
+### 签名规则
+
+对请求参数的key从小到大排序后，拼接key(不包括sign字段)所对应的参数值后求md5。
+```go
+// 1. 例如发送的参数如下所示
+map[string]interface{}{
+    "app_key":     "app_key",
+    "product_key": "1",
+    "device_key":  "device_key",
+    "data":        "hello world",
+    "sign":        "4d62a91d0588320d314001828da9e1db",
+}
+// 2. 则签名为： app_key的值 + data的值 + device_key的值 + product_key的值
+md5("app_keyhello worlddevice_key1") = "4d62a91d0588320d314001828da9e1db"
+```
+
 
 ## 功能模块
 
@@ -114,8 +133,8 @@ go run open.go -f etc/open-api.yaml
   + [x] 产品管理
     + [x] 产品列表
     + [x] 创建、修改、删除产品
-+ [ ] 开放平台模块
-  + [ ] 签名
++ [x] 开放平台模块
+  + [x] 签名
   + [x] 发送消息
 + [x] 设备服务模块
   + [x] 设备状态管理

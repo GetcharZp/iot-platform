@@ -13,11 +13,14 @@ import (
 )
 
 type (
+	OpenAuthReply   = user.OpenAuthReply
+	OpenAuthRequest = user.OpenAuthRequest
 	UserAuthReply   = user.UserAuthReply
 	UserAuthRequest = user.UserAuthRequest
 
 	User interface {
 		Auth(ctx context.Context, in *UserAuthRequest, opts ...grpc.CallOption) (*UserAuthReply, error)
+		OpenAuth(ctx context.Context, in *OpenAuthRequest, opts ...grpc.CallOption) (*OpenAuthReply, error)
 	}
 
 	defaultUser struct {
@@ -34,4 +37,9 @@ func NewUser(cli zrpc.Client) User {
 func (m *defaultUser) Auth(ctx context.Context, in *UserAuthRequest, opts ...grpc.CallOption) (*UserAuthReply, error) {
 	client := user.NewUserClient(m.cli.Conn())
 	return client.Auth(ctx, in, opts...)
+}
+
+func (m *defaultUser) OpenAuth(ctx context.Context, in *OpenAuthRequest, opts ...grpc.CallOption) (*OpenAuthReply, error) {
+	client := user.NewUserClient(m.cli.Conn())
+	return client.OpenAuth(ctx, in, opts...)
 }

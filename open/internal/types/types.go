@@ -2,9 +2,11 @@
 package types
 
 type SendMessageRequest struct {
+	AppKey     string `json:"app_key"`
 	ProductKey string `json:"product_key"`
 	DeviceKey  string `json:"device_key"`
 	Data       string `json:"data"`
+	Sign       string `json:"sign"`
 }
 
 type SendMessageReply struct {
